@@ -51,7 +51,7 @@ except Exception as e: #generic message for other types of errors
     print(e, e.__doc__, type(e), sep='\n')
 
 finally:
-    if file.closed == False:
+    if not file.closed:
         file.close()
 
 # Present and Process the data
@@ -76,8 +76,8 @@ while True:
                         'course_name': course_name}
             students.append(student_data)
 
-            print(f"You have registered {student_data['first_name']} {student_data['last_name']} "
-                  f"for {student_data['course_name']}.")
+            print(f"You have entered {student_data['first_name']} {student_data['last_name']} "
+                  f"to register for {student_data['course_name']}.")
 
         except Exception as e:
             print("There was a non-specific error!\n")
@@ -102,7 +102,9 @@ while True:
             file = open(FILE_NAME, "w")
             json.dump(students, file)
             file.close()
-            print("Your data has been saved successfully.")
+            print(f"You successfully saved {student_data['first_name']} {student_data['last_name']} to enroll in {student_data['course_name']}")
+            print("-" * 50)
+
             continue
 
         except TypeError as e: #catch errors where data is not in JSON format
@@ -127,3 +129,8 @@ while True:
         print("Please only choose option 1, 2, 3, or 4") #in case user enters anything other than numbers 1-4
 
 print("Program Ended")
+
+
+
+
+
